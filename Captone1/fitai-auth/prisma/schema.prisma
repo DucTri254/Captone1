@@ -1,0 +1,37 @@
+// ---------- generator ----------
+generator client {
+  provider = "prisma-client-js"
+}
+
+// ---------- datasource ----------
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- models ----------
+model User {
+  id              String    @id @default(cuid())
+  email           String    @unique
+  passwordHash    String
+  emailVerifiedAt DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+model Token {
+  id        String    @id @default(cuid())
+  email     String
+  kind      TokenKind
+  tokenHash String
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@unique([email, kind])
+}
+
+enum TokenKind {
+  VERIFY // OTP xác minh email khi đăng ký
+  RESET // OTP quên mật khẩu
+}
