@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+ENV/
+
+# Environment variables
+.env
+.env.*
+
+# Data – DO NOT commit
+fitai-rag-qdrant/data/**
+!fitai-rag-qdrant/data/.gitkeep
+
+# Model weights
+*.bin
+*.onnx
+*.safetensors
+.cache/
+.huggingface/
+
+# Ignore Prisma sqlite
+fitai-auth/prisma/dev.db
+
+# System
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+.next/
+dist/
